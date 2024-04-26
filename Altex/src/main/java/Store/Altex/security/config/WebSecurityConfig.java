@@ -4,28 +4,36 @@ import Store.Altex.models.*;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.messaging.simp.config.MessageBrokerRegistry;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CorsFilter;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.socket.config.annotation.EnableWebSocketMessageBroker;
+import org.springframework.web.socket.config.annotation.StompEndpointRegistry;
+import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerConfigurer;
 
 @Configuration
 @AllArgsConstructor
 @EnableWebSecurity
-public class WebSecurityConfig extends WebSecurityConfigurerAdapter  {
+@EnableWebSocketMessageBroker
+public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final UserService userService;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
-
-    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        // Serve static resources from an external directory
-        registry.addResourceHandler("/public/**")
-                .addResourceLocations("file:///D:/1ProiecteAN3/1AltexPS/public/");
-    }
+//
+//    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+//        // Serve static resources from an external directory
+//        registry.addResourceHandler("/public/**")
+//                .addResourceLocations("file:///D:/1ProiecteAN3/1AltexPS/public/");
+//    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -39,6 +47,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter  {
                         "/api/v*/wishlist/**",
                         "/api/v*/order/**",
                         "/api/v*/cart/**",
+                        "/api/v*/chat/**",
+                        "/ws/**", "/ws/info", "/ws/info/**",
                         "/api/v*/reviews/**")
                 .permitAll()
                 .anyRequest()
@@ -59,4 +69,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter  {
         provider.setUserDetailsService(userService);
         return provider;
     }
-}
+
+
+        @Bean
+        public CorsFilter corsFilter() {
+            UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+            CorsConfiguration config = new CorsConfiguration();
+            config.setAllowCredentials(true); // Update here
+            config.addAllowedOriginPattern("*");
+            config.addAllowedHeader("*");
+            config.addAllowedMethod("*");
+            source.registerCorsConfiguration("/**", config);
+            return new CorsFilter(source);
+        }
+    }
+

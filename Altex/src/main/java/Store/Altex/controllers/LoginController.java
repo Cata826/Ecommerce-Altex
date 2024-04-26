@@ -10,6 +10,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @RestController
 
@@ -40,7 +41,24 @@ public class LoginController {
 
             return loginService.getIdByEmail(email);
     }
+    @GetMapping("/users/{id}")
+    public String getUserById(@PathVariable Long id) {
+        User user = loginService.getUserById(id);
 
+        return user.getFirstName();
+    }
+    @GetMapping("/last-logged")
+    public ResponseEntity<List<User>> getUsersByLastLogged() {
+        // Get users based on the LocalDateTime of their last login
+        LocalDateTime lastLogged = LocalDateTime.now().minusMonths(1); // Example: Users logged in within the last month
+        List<User> users = loginService.getUserByLastLogged(lastLogged);
+
+        if (users.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        } else {
+            return ResponseEntity.ok(users);
+        }
+    }
 //    @GetMapping("/update-last-logged")
 //    public ResponseEntity<String> updateLastLogged() {
 //        LocalDateTime now = LocalDateTime.now();

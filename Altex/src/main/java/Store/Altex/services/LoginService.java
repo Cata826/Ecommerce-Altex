@@ -8,6 +8,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -37,7 +38,9 @@ public class LoginService {
         user.setCounter(user.getCounter()+1);
         userRepository.save(user);
     }
-
+    public List<User> getUserByLastLogged(LocalDateTime lastLogged) {
+        return userRepository.findByLastLogged(lastLogged);
+    }
     public User getUserById(Long id) {
         return userRepository.findById(id)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found with id: " + id));

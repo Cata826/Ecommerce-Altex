@@ -12,6 +12,10 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.Collections;
@@ -36,9 +40,21 @@ public class User implements UserDetails {
             generator = "user_sequence"
     )
     private Long id;
+    @NotBlank(message = "Last name is required")
     private String firstName;
+    @NotBlank(message = "First name is required")
     private String lastName;
+
+    @NotBlank(message = "Email is required")
+    @Email(message = "Invalid email format")
     private String email;
+
+    @NotBlank(message = "Password is required")
+    @Size(min = 8, message = "Password must be at least 8 characters long")
+    @Pattern.List({
+            @Pattern(regexp = ".*\\d.*", message = "Password must contain at least one digit"),
+            @Pattern(regexp = ".*[A-Z].*", message = "Password must contain at least one uppercase letter")
+    })
     private String password;
     @Enumerated(EnumType.STRING)
     private UserRole appUserRole;

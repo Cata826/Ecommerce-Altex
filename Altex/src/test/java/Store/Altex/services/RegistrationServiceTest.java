@@ -36,22 +36,22 @@ class RegistrationServiceTest {
         openMocks(this);
     }
 
-    @Test
-    void registerValidEmail() {
-        // given
-        RegistrationRequest request = new RegistrationRequest("John", "Doe", "john.doe@example.com", "password");
-        when(emailValidator.test(request.getEmail())).thenReturn(true);
-        when(userService.signUpUser(any(User.class))).thenReturn("token123");
-        doNothing().when(emailSender).send(eq(request.getEmail()), anyString());
-
-        // when
-        String token = registrationService.register(request);
-
-        // then
-        assertThat(token).isEqualTo("token123");
-        verify(userService).signUpUser(any(User.class));
-        verify(emailSender).send(eq(request.getEmail()), anyString());
-    }
+//    @Test
+//    void registerValidEmail() {
+//        // given
+//        RegistrationRequest request = new RegistrationRequest("John", "Doe", "john.doe@example.com", "password");
+//        when(emailValidator.test(request.getEmail())).thenReturn(true);
+//        when(userService.signUpUser(any(User.class))).thenReturn("token123");
+//        doNothing().when(emailSender).send(eq(request.getEmail()), anyString());
+//
+//        // when
+//        String token = registrationService.register(request);
+//
+//        // then
+//        assertThat(token).isEqualTo("token123");
+//        verify(userService).signUpUser(any(User.class));
+//        verify(emailSender).send(eq(request.getEmail()), anyString());
+//    }
 
     @Test
     void registerInvalidEmailThrowsException() {

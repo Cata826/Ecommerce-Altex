@@ -38,6 +38,26 @@ public class RegistrationService {
             throw new IllegalStateException("email not valid");
         }
 
+
+        if (request.getFirstName() == null || request.getFirstName().isEmpty()) {
+            throw new IllegalArgumentException("First name cannot be empty");
+        }
+
+        if (request.getLastName() == null || request.getLastName().isEmpty()) {
+            throw new IllegalArgumentException("Last name cannot be empty");
+        }
+
+        if (request.getPassword() == null || request.getPassword().length() < 8) {
+            throw new IllegalArgumentException("Password must be at least 8 characters long");
+        }
+
+        // Verifică dacă parola conține cel puțin o cifră și o literă mare
+        if (!request.getPassword().matches(".*\\d.*")) {
+            throw new IllegalArgumentException("Password must contain at least one digit");
+        }
+        if (!request.getPassword().matches(".*[A-Z].*")) {
+            throw new IllegalArgumentException("Password must contain at least one uppercase letter");
+        }
         String token = userService.signUpUser(
                 new User(
                         request.getFirstName(),

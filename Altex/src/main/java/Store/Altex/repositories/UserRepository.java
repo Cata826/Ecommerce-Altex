@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -18,7 +19,7 @@ public interface UserRepository
         extends JpaRepository<User, Long> {
 
     Optional<User> findByEmail(String email);
-
+    List<User> findByLastLogged(LocalDateTime lastLogged);
     @Transactional
     @Modifying
     @Query("UPDATE User a " +
