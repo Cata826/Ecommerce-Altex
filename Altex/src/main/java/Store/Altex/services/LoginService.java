@@ -27,6 +27,7 @@ public class LoginService {
         }
     }
 
+
 //    public void updateLastLogged(LocalDateTime lastLogged) {
 //        // Logic to update lastLogged for all users
 //        userRepository.updateLastLoggedForAllUsers(lastLogged);

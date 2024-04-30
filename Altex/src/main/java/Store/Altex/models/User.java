@@ -76,6 +76,15 @@ public class User implements UserDetails {
     @JsonIgnore
     private Customer customer;
     private LocalDateTime lastLogged;
+
+    public String getDate(LocalDateTime lastLogged) {
+        if (lastLogged == null) {
+            return null;  // Handle the case where lastLogged might be null
+        }
+        String trim = lastLogged.toString();
+        return trim.substring(0, 10);  // Returns the first 10 characters, which is the date part
+    }
+
     private int counter;
     public User(String firstName,
                    String lastName,

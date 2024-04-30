@@ -40,7 +40,10 @@ public class ProductService {
         productRequest.setCategories(productCategories);
         return productRepository.save(productRequest);
     }
-
+    public List<Product> getProductsByCategoryId(Long categoryId) {
+        // Assuming you have a method in ProductRepository that retrieves products by category id
+        return productRepository.findByCategories_Id(categoryId);
+    }
     @Transactional
     public void updateProductStars(Long productId, int stars) {
         int updatedRows = productRepository.updateStars(productId, stars);

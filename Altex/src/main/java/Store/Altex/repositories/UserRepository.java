@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -18,6 +19,8 @@ import java.util.Optional;
 public interface UserRepository
         extends JpaRepository<User, Long> {
 
+    @Query(value = "SELECT * FROM User WHERE CAST(last_logged AS DATE) = :date", nativeQuery = true)
+    List<User> findByLastLoggedDate(LocalDate date);
     Optional<User> findByEmail(String email);
     List<User> findByLastLogged(LocalDateTime lastLogged);
     @Transactional

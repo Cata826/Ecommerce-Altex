@@ -6,9 +6,14 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.util.List;
+
 public interface ProductRepository extends JpaRepository<Product,Long> {
 
     @Modifying
     @Query("UPDATE Product p SET p.stars = :stars WHERE p.id = :productId")
     int updateStars(@Param("productId") Long productId, @Param("stars") int stars);
+    List<Product> findByCategories_Id(Long categoryId);
+
+
 }

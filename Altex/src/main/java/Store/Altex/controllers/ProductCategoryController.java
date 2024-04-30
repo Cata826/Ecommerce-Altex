@@ -21,25 +21,6 @@ import java.util.List;
 public class ProductCategoryController {
 
     private final ProductService productService;
-//    private static final String TARGET_FOLDER = "uploads/";
-//
-//    @PostMapping("/{productId}/uploadImage")
-//    public ResponseEntity<String> uploadImage(@PathVariable Long productId, @RequestParam("file") MultipartFile file) {
-//        if (file.isEmpty()) {
-//            return ResponseEntity.badRequest().body("No file uploaded");
-//        }
-//        try {
-//            byte[] bytes = file.getBytes();
-//            Path path = Paths.get(TARGET_FOLDER + file.getOriginalFilename());
-//            Files.write(path, bytes);
-//            // Assuming you have a service to update the product's image URL
-//            productService.updateProductImage(productId, path.toString());
-//            return ResponseEntity.ok("File uploaded successfully: " + file.getOriginalFilename());
-//        } catch (IOException e) {
-//            return ResponseEntity.internalServerError().body("Error occurred: " + e.getMessage());
-//        }
-//    }
-
     @PostMapping
     public ResponseEntity<Product> createProduct(@RequestBody Product product) {
         return ResponseEntity.ok(productService.createProduct(product));
@@ -68,5 +49,11 @@ public class ProductCategoryController {
     public ResponseEntity<Void> deleteProduct(@PathVariable Long id) {
         productService.deleteProduct(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/category/{categoryId}")
+    public ResponseEntity<List<Product>> getProductsByCategory(@PathVariable Long categoryId) {
+        List<Product> products = productService.getProductsByCategoryId(categoryId);
+        return ResponseEntity.ok(products);
     }
 }

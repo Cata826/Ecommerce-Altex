@@ -21,6 +21,9 @@ public class Product {
     private String short_description;
     private String long_description;
     private double pret;
+
+    @Column(name = "image_url")
+    private String imageUrl;
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
     private Set<Wishlist> wishlist;

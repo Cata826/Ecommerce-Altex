@@ -139,8 +139,8 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link, useParams } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart, faShop, faStar } from '@fortawesome/free-solid-svg-icons';
-
+import { faHeart, faShop, faStar,faEye,faEdit,faComments } from '@fortawesome/free-solid-svg-icons';
+import './Home2B.css'; 
 export default function Home2B() {
     const [products, setProducts] = useState([]);
     const { userId } = useParams(); // 'id' is the userId obtained from the URL
@@ -189,64 +189,109 @@ export default function Home2B() {
         alert(`Average Rating for Product ID ${productId}: ${averageRating}`);
     };
 
-    return (
-        <div className="container">
-            <div className="py-4">
-                <div className="d-flex justify-content-between align-items-center mb-3">
-                    <h2>Product List</h2>
-                    <Link to={`/order/${id}`}>
-                        <FontAwesomeIcon icon={faShop} size="2x" color="yellow" />
-                    </Link>
-                    <Link to={`/wishlist/${id}`}>
-                        <FontAwesomeIcon icon={faHeart} size="2x" color="yellow" />
-                    </Link>
-                </div>
-                <table className="table border shadow">
-                    <thead>
-                        <tr>
-                            <th scope="col">Id</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">Pret description</th>
-                            <th scope="col">Short description</th>
-                            <th scope="col">Photo</th>
-                            <th scope="col">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {products.map((product, index) => (
-                            <tr key={index}>
-                                <td>{product.id}</td>
-                                <td>{product.name}</td>
-                                <td>{product.pret}</td>
-                                <td>{product.short_description}</td>
-                                <td>
-                                    <img src={product.image} alt={product.name} className="product-image mb-3" />
-                                </td>
-                                <td>
-                                    <Link className="btn btn-outline-danger mx-2" onClick={() => addToCart(product.id)}>
-                                        Cart
-                                    </Link>
+    // return (
+    //     <div className="container">
+    //         <div className="py-4">
+    //             <div className="d-flex justify-content-between align-items-center mb-3">
+    //                 <h2>Product List</h2>
+    //                 <Link to={`/order/${id}`}>
+    //                     <FontAwesomeIcon icon={faShop} size="2x" color="yellow" />
+    //                 </Link>
+    //                 <Link to={`/wishlist/${id}`}>
+    //                     <FontAwesomeIcon icon={faHeart} size="2x" color="yellow" />
+    //                 </Link>
+    //             </div>
+    //             <table className="table border shadow">
+    //                 <thead>
+    //                     <tr>
+    //                         <th scope="col">Id</th>
+    //                         <th scope="col">Name</th>
+    //                         <th scope="col">Pret description</th>
+    //                         <th scope="col">Short description</th>
+    //                         <th scope="col">Photo</th>
+    //                         <th scope="col">Actions</th>
+    //                     </tr>
+    //                 </thead>
+    //                 <tbody>
+    //                     {products.map((product, index) => (
+    //                         <tr key={index}>
+    //                             <td>{product.id}</td>
+    //                             <td>{product.name}</td>
+    //                             <td>{product.pret}</td>
+    //                             <td>{product.short_description}</td>
+    //                             <td>
+    //                                 <img src={product.image} alt={product.name} className="product-image mb-3" />
+    //                             </td>
+    //                             <td>
+    //                                 <Link className="btn btn-outline-danger mx-2" onClick={() => addToCart(product.id)}>
+    //                                     Cart
+    //                                 </Link>
                          
-                                    <Link className="btn btn-outline-danger mx-2" onClick={() => addToWishlist(product.id)}>
-                                        Wishlist
-                                    </Link>
-                                    <Link className="btn btn-outline-danger mx-2" to={`/viewproduct/${product.id}/${id}`}>
-                                        View
-                                    </Link>
-                                    <Link className="btn btn-outline-danger mx-2" to={`/editproduct/${product.id}`}>
-                                        Edit
-                                    </Link>
-                                    <button className="btn btn-outline-danger mx-2" onClick={() => handleSeeRating(product.id)}>
-                                        See Rating
-                                    </button>
-                                    <Link className="btn btn-outline-danger mx-2" to={`/chat/${id}`}>
-                                        Chating
-                                    </Link>
-                                </td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
+    //                                 <Link className="btn btn-outline-danger mx-2" onClick={() => addToWishlist(product.id)}>
+    //                                     Wishlist
+    //                                 </Link>
+    //                                 <Link className="btn btn-outline-danger mx-2" to={`/viewproduct/${product.id}/${id}`}>
+    //                                     View
+    //                                 </Link>
+    //                                 <Link className="btn btn-outline-danger mx-2" to={`/editproduct/${product.id}`}>
+    //                                     Edit
+    //                                 </Link>
+    //                                 <button className="btn btn-outline-danger mx-2" onClick={() => handleSeeRating(product.id)}>
+    //                                     See Rating
+    //                                 </button>
+    //                                 <Link className="btn btn-outline-danger mx-2" to={`/chat/${id}`}>
+    //                                     Chating
+    //                                 </Link>
+    //                             </td>
+    //                         </tr>
+    //                     ))}
+    //                 </tbody>
+    //             </table>
+    //         </div>
+    //     </div>
+    // );
+    return (
+        <div className="container mt-5">
+            <div className="row">
+                {products.map((product, index) => (
+                    <div key={index} className="col-md-4 mb-4">
+                        <div className="card h-100 shadow-sm">
+                        <img src={product.imageUrl} className="card-img-top" alt={product.name} style={{ height: '250px', objectFit: 'cover' }} />
+                            <div className="card-body">
+                                <h5 className="card-title">{product.name}</h5>
+                                <p className="card-text">{product.short_description}</p>
+                                <p className="text-muted">${product.pret.toFixed(2)}</p>
+                                <div className="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <button className="btn btn-sm btn-outline-primary" onClick={() => addToCart(product.id)}>
+                                            <FontAwesomeIcon icon={faShop} /> Cart
+                                        </button>
+                                        <button className="btn btn-sm btn-outline-danger" onClick={() => addToWishlist(product.id)}>
+                                            <FontAwesomeIcon icon={faHeart} /> Wishlist
+                                        </button>
+                                    </div>
+                                    <small>
+                                        <FontAwesomeIcon icon={faStar} className="text-warning" /> {product.stars}
+                                    </small>
+                                </div>
+                            </div>
+                            <div className="card-footer">
+                                <Link className="btn btn-sm btn-outline-secondary" to={`/viewproduct/${product.id}`}>
+                                    <FontAwesomeIcon icon={faEye} /> View
+                                </Link>
+                                <button className="btn btn-sm btn-outline-info" onClick={() => handleSeeRating(product.id)}>
+                                    Rate
+                                </button>
+                                <Link className="btn btn-sm btn-outline-primary" to={`/editproduct/${product.id}`}>
+                                    <FontAwesomeIcon icon={faEdit} /> Edit
+                                </Link>
+                                <Link className="btn btn-sm btn-outline-success" to={`/chat/${id}`}>
+                                    <FontAwesomeIcon icon={faComments} /> Chat
+                                </Link>
+                            </div>
+                        </div>
+                    </div>
+                ))}
             </div>
         </div>
     );
