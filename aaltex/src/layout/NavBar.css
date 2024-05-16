@@ -1,0 +1,15 @@
+.navbar-brand .altex {
+    color: #ffa726;
+}
+
+.nav-link {
+    color: #ffa726;
+}
+
+.nav-link:hover {
+    color: #fef9f9; /* Change color on hover */
+}
+
+.icon {
+    color: #ffa726;
+}

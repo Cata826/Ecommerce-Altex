@@ -1,25 +1,21 @@
 package Store.Altex.security.config;
 import Store.Altex.services.UserService;
-import Store.Altex.models.*;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.messaging.simp.config.MessageBrokerRegistry;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.firewall.HttpFirewall;
+import org.springframework.security.web.firewall.StrictHttpFirewall;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
-import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.socket.config.annotation.EnableWebSocketMessageBroker;
-import org.springframework.web.socket.config.annotation.StompEndpointRegistry;
-import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerConfigurer;
-
 @Configuration
 @AllArgsConstructor
 @EnableWebSecurity
@@ -48,18 +44,22 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         "/api/v*/order/**",
                         "/api/v*/cart/**",
                         "/api/v*/chat/**",
+                        "/api/v*/cards/**",
                         "/ws/**", "/ws/info", "/ws/info/**",
                         "/api/v*/reviews/**")
                 .permitAll()
                 .anyRequest()
                 .authenticated().and()
                 .formLogin();
+
+
     }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.authenticationProvider(daoAuthenticationProvider());
     }
+
 
     @Bean
     public DaoAuthenticationProvider daoAuthenticationProvider() {
@@ -75,7 +75,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         public CorsFilter corsFilter() {
             UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
             CorsConfiguration config = new CorsConfiguration();
-            config.setAllowCredentials(true); // Update here
+            config.setAllowCredentials(true);
             config.addAllowedOriginPattern("*");
             config.addAllowedHeader("*");
             config.addAllowedMethod("*");

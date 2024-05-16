@@ -21,15 +21,20 @@ public class Order {
     @GeneratedValue
     private Long id;
 
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "user_id")
+//
+//    private User user;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id", referencedColumnName = "id") // Ensure referencedColumnName matches the primary key in User
     @JsonIgnore
     private User user;
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "product_id")
     @JsonIgnore
     private Product product;
 
-    private boolean orderSentToAdmin = false;
+
+
+
 }

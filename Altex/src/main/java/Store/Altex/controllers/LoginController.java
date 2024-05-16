@@ -6,7 +6,6 @@ import Store.Altex.requests.LoginRequest;
 import Store.Altex.services.LoginService;
 import Store.Altex.services.*;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ContentDisposition;
 import org.springframework.http.HttpHeaders;
@@ -19,6 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 
@@ -119,4 +119,13 @@ public class LoginController {
             return (ResponseEntity<Boolean>) ResponseEntity.notFound();
         }
     }
+    @GetMapping()
+    public List<User> getAllUsers() {
+        return userRepository.findAll();
+    }
+
+//    @GetMapping("/{id}")
+//    public Optional<User> gets(@PathVariable Long id) {
+//        return userRepository.findById(id);
+//    }
 }

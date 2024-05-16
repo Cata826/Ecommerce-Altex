@@ -59,5 +59,21 @@ public class EmailService implements EmailSender {
             throw new IllegalStateException("Failed to send email with PDF attachment", e);
         }
     }
+    @Async
+    public void sendEmail(String to, String subject, String body) {
+        try {
+            MimeMessage mimeMessage = mailSender.createMimeMessage();
+            MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, "utf-8");
+            helper.setText(body, true);
+            helper.setTo(to);
+            helper.setSubject(subject);
+            helper.setFrom("balintcatalin826@gmail.com");
+            mailSender.send(mimeMessage);
+        } catch (MessagingException e) {
+            LOGGER.error("Failed to send email", e);
+            throw new IllegalStateException("Failed to send email");
+        }
+    }
+
 
 }

@@ -5,6 +5,7 @@ import Store.Altex.models.Cart;
 import Store.Altex.models.Order;
 import Store.Altex.models.Product;
 import Store.Altex.services.CartService;
+import Store.Altex.services.LoginService;
 import Store.Altex.services.OrderService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -12,7 +13,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.mail.MessagingException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping(path = "/api/v1/cart")
@@ -22,6 +25,7 @@ public class CartController {
 
     private final CartService cartService;
     private final OrderService orderService;
+    private final LoginService loginService;
     @PostMapping
     public ResponseEntity<Cart> addToCart(@RequestParam Long userId, @RequestParam Long productId) {
         Cart wishlistItem = cartService.addToCart(userId, productId);
@@ -50,22 +54,43 @@ public class CartController {
         List<Product> products = cartService.getProductsForUserCart(userId);
         return ResponseEntity.ok(products);
     }
-    @GetMapping("/user/{userId}/products/move")
-    public ResponseEntity<List<Product>> move(@PathVariable Long userId) throws MessagingException {
-        List<Product> products = cartService.getProductsForUserCart(userId);
-        for(Product product : products) {
-            Long productId = product.getId();
-            Order order = orderService.addToWishlist(userId, productId);
-        }
-        List<Cart> carts = cartService.getCartByUserId(userId);
-        for(Cart cart : carts){
-            Long cartId = cart.getId();
-            cartService.removeFromCart(cartId);
-        }
-        return ResponseEntity.ok(products);
+//    @GetMapping("/user/{userId}/products/move")
+//    public ResponseEntity<List<Product>> move(@PathVariable Long userId) throws MessagingException {
+//        List<Product> products = cartService.getProductsForUserCart(userId);
+//        for(Product product : products) {
+//            Long productId = product.getId();
+//            Order order = orderService.addToWishlist(userId, productId);
+//        }
+//        List<Cart> carts = cartService.getCartByUserId(userId);
+//        for(Cart cart : carts){
+//            Long cartId = cart.getId();
+//            cartService.removeFromCart(cartId);
+//        }
+//        return ResponseEntity.ok(products);
+//    }
+@GetMapping("/user/{userId}/products/move")
+public ResponseEntity<Map<Product, Integer>> move(@PathVariable Long userId) throws MessagingException {
+    List<Product> products = cartService.getProductsForUserCart(userId);
+    Map<Product, Integer> wishlist = new HashMap<>();
+    for (Product product : products) {
+        Long productId = product.getId();
+        Order order = orderService.addToWishlist(userId, productId);
+
+        // Add the product to the wishlist map
+        wishlist.put(product, wishlist.getOrDefault(product, 0) + 1);
+
+    }
+    orderService.sendOrderConfirmationEmail(loginService.getUserById(userId).getEmail(), wishlist);
+    List<Cart> carts = cartService.getCartByUserId(userId);
+    for (Cart cart : carts) {
+        Long cartId = cart.getId();
+        cartService.removeFromCart(cartId);
     }
 
-//        public List<Cart> getCartByUserId(Long userId) {
+    return ResponseEntity.ok(wishlist);
+}
+
+    //        public List<Cart> getCartByUserId(Long userId) {
 //        return cartRepository.findByUserId(userId);
 //    }
 //    public void removeFromCart(Long order) {

@@ -66,6 +66,9 @@ public class User implements UserDetails {
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Cart> order;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Order> orders;
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "admin_id", nullable = true)
     @JsonIgnore

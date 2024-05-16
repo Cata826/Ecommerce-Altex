@@ -1,0 +1,178 @@
+/* General Styles */
+body {
+    background-color: #ffffff; /* White background */
+    color: #000; /* Black text for good contrast on white background */
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Calendar Container */
+.calendar-container {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Page Title */
+.page-title {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #dc3545; /* Danger color */
+    font-size: 1.5em;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* Calendar Page */
+.calendar-page {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 80vh; /* Ensure full height */
+}
+
+/* Calendar Wrapper */
+.calendar-wrapper {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 20px;
+}
+
+/* Custom Calendar */
+.custom-calendar {
+    background-color: #f4f3f3; /* Danger background color */
+    border: 2px solid #ffc107; /* Gold border */
+    border-radius: 10px;
+    box-shadow: 0 0 10px 2px #ffc107; /* Gold shadow for futuristic glow */
+    width: 100%;
+    max-width: 400px;
+}
+
+.react-calendar {
+    width: 100%;
+    border: none;
+}
+
+.react-calendar__tile {
+    font-weight: bold;
+    color: #dc3545; /* Yellow digits */
+}
+
+.react-calendar__tile--active {
+    background-color: #dc3545 !important; /* Yellow background on active date */
+    color: #ffc107 !important; /* Red text on active date */
+}
+
+.react-calendar__tile--now {
+    background-color: #dc3545 !important; /* Yellow background on today's date */
+    color: #ffc107 !important; /* Red text on today's date */
+}
+
+.react-calendar__navigation button {
+    color: #dc3545; /* Yellow navigation buttons */
+    font-weight: bold;
+}
+
+.react-calendar__month-view__days__day--weekend {
+    color: #dc3545; /* Yellow for weekend days */
+}
+
+.react-calendar__tile--hover {
+    background-color: #ffc107 !important; /* Yellow background on hover */
+    color: #dc3545 !important; /* Red text on hover */
+}
+
+/* Info Wrapper */
+.info-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+/* Date Display */
+.date-display {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.date-display label {
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+.date-input {
+    padding: 10px;
+    border: 2px solid #dc3545; /* Danger color */
+    border-radius: 5px;
+    background-color: #f7f7f7; /* Light background */
+    color: #dc3545; /* Danger text color */
+    font-size: 16px;
+    font-weight: bold;
+    box-shadow: 0 0 10px 2px #ffc107; /* Gold shadow for futuristic glow */
+}
+
+/* User List Header */
+.user-list-header {
+    color: #dc3545; /* Danger color */
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* User List */
+.user-list {
+    list-style-type: none;
+    padding: 0;
+    width: 100%;
+}
+
+/* User Item */
+.user-item {
+    margin-top: 10px;
+    width: 100%;
+}
+
+/* Download Button */
+.download-btn {
+    padding: 10px;
+    width: 100%;
+    background-color: #dc3545; /* Danger color */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    font-weight: bold;
+    text-align: left;
+    box-shadow: 0 0 10px 2px #dc3545; /* Red shadow for futuristic glow */
+}
+
+.download-btn:hover {
+    background-color: #ffc107; /* Gold color */
+    box-shadow: 0 0 10px 2px #ffc107; /* Gold shadow for futuristic glow */
+}
+
+/* No Users Message */
+.no-users {
+    color: #dc3545; /* Danger color */
+    font-style: italic;
+    margin-top: 20px;
+    text-align: center;
+}
+/* XML Content */
+.xml-content {
+    white-space: pre-wrap;
+    background-color: #ffffff; /* White background */
+    padding: 10px;
+    border-radius: 5px;
+    border: 2px solid #dc3545; /* Danger color */
+    box-shadow: 0 0 10px 2px #ffc107; /* Gold shadow for futuristic glow */
+    overflow: auto; /* Enable scrollbar when content exceeds container */
+}

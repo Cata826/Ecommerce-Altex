@@ -30,7 +30,7 @@ export default function EditUser() {
   };
 
   const loadUser = async () => {
-    const result = await axios.get(`http://localhost:8080/person/${id}`);
+    const result = await axios.get(`http://localhost:8080/api/v1/login/users/${id}`);
     setUser(result.data);
   };
 

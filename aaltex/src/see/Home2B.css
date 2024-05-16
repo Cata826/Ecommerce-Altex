@@ -1,0 +1,48 @@
+ 
+.container-fluid-2 {
+  padding: 25px;
+}
+
+
+.card {
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden; 
+}
+
+/* Card image styles */
+.card-img-top {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+
+.card-body {
+  padding: 15px;
+}
+
+.card-title {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.card-text {
+  font-size: 14px;
+}
+
+.card-footer {
+  padding: 10px;
+  background-color: #f8f9fa; 
+  border-top: 1px solid #ddd;
+}
+
+.btn {
+  margin-right: 5px;
+}
+
+.row {
+  overflow-y: auto; 
+  max-height: calc(100vh - 150px); 
+} 

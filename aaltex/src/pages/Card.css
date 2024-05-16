@@ -1,0 +1,90 @@
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.payment-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.card-preview {
+  background-color: #f0f0f0;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-section {
+  margin-bottom: 15px;
+}
+
+.card-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.card-row .card-section {
+  flex: 1;
+  margin-right: 10px;
+}
+
+.card-row .card-section:last-child {
+  margin-right: 0;
+}
+
+.card-section label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.card-section input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.form-section {
+  margin-bottom: 15px;
+}
+
+.form-section label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.form-section input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.submit-button,
+.place-order-button {
+  background-color: yellow;
+  color: black;
+  font-size: 16px;
+  padding: 10px;
+  margin-top: 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.submit-button:hover,
+.place-order-button:hover {
+  background-color: gold;
+}
