@@ -1,6 +1,5 @@
 package Store.Altex.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -32,14 +31,6 @@ import javax.validation.constraints.Pattern;
         @Column(nullable = false)
         @Pattern(regexp = "^(0[1-9]|1[0-2])/(\\d{2})$", message = "Formatul expirării trebuie să fie MM/YY")
         private String expiration;
-
-
-
-//        @ManyToOne(fetch = FetchType.LAZY)
-//        @JoinColumn(name = "user_id")
-//        @JsonIgnore
-//        private User user;
-
 
         private String address;
         private String city;

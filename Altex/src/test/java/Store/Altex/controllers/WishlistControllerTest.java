@@ -39,8 +39,7 @@ class WishlistControllerTest {
     void addToWishlistShouldReturnWishlistItem() throws Exception {
         Long userId = 1L;
         Long productId = 1L;
-        Wishlist wishlist = new Wishlist(); // Mocked Wishlist object
-
+        Wishlist wishlist = new Wishlist();
         when(wishlistService.addToWishlist(userId, productId)).thenReturn(wishlist);
 
         mockMvc.perform(post("/api/v1/wishlist")

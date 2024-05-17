@@ -33,13 +33,13 @@ class RegistrationControllerTest {
 
     @Test
     void confirmShouldReturnConfirmationMessage() throws Exception {
-        // Given
+
         String token = "token123";
         String confirmationMessage = "Token confirmed";
 
         when(registrationService.confirmToken(token)).thenReturn(confirmationMessage);
 
-        // When / Then
+
         mockMvc.perform(get("/api/v1/registration/confirm")
                         .param("token", token))
                 .andExpect(status().isOk())

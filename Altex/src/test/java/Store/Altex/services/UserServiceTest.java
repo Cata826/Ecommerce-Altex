@@ -39,28 +39,24 @@ class UserServiceTest {
 
     @Test
     void canLoadUserByUsername() {
-        // given
+
         String email = "test@example.com";
         User user = new User();
         user.setEmail(email);
         when(userRepository.findByEmail(email)).thenReturn(Optional.of(user));
-
-        // when
         UserDetails foundUser = userService.loadUserByUsername(email);
 
-        // then
         assertThat(foundUser).isNotNull();
         verify(userRepository).findByEmail(email);
     }
 
     @Test
     void willThrowWhenEmailNotFound() {
-        // given
+
         String email = "test@example.com";
         when(userRepository.findByEmail(email)).thenReturn(Optional.empty());
 
-        // when
-        // then
+
         assertThatThrownBy(() -> userService.loadUserByUsername(email))
                 .isInstanceOf(UsernameNotFoundException.class)
                 .hasMessageContaining(String.format(UserService.USER_NOT_FOUND_MSG, email));
@@ -68,7 +64,7 @@ class UserServiceTest {
 
     @Test
     void canSignUpUser() {
-        // given
+
         String email = "test@example.com";
         String password = "password123";
         User user = new User();
@@ -78,10 +74,8 @@ class UserServiceTest {
         when(userRepository.findByEmail(email)).thenReturn(Optional.empty());
         when(bCryptPasswordEncoder.encode(password)).thenReturn("encodedPassword");
 
-        // when
         String token = userService.signUpUser(user);
 
-        // then
         assertThat(token).isNotNull();
         assertThat(UUID.fromString(token)).isInstanceOf(UUID.class);
         verify(userRepository).save(any(User.class));
@@ -90,14 +84,11 @@ class UserServiceTest {
 
     @Test
     void signUpUserWillThrowIfEmailIsTaken() {
-        // given
         String email = "test@example.com";
         User user = new User();
         user.setEmail(email);
         when(userRepository.findByEmail(email)).thenReturn(Optional.of(user));
 
-        // when
-        // then
         assertThatThrownBy(() -> userService.signUpUser(user))
                 .isInstanceOf(IllegalStateException.class)
                 .hasMessageContaining("email already taken");

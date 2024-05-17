@@ -82,10 +82,10 @@ public class User implements UserDetails {
 
     public String getDate(LocalDateTime lastLogged) {
         if (lastLogged == null) {
-            return null;  // Handle the case where lastLogged might be null
+            return null;
         }
         String trim = lastLogged.toString();
-        return trim.substring(0, 10);  // Returns the first 10 characters, which is the date part
+        return trim.substring(0, 10);
     }
 
     private int counter;

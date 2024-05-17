@@ -1,7 +1,6 @@
 package Store.Altex.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,7 +10,6 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Entity
-//@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Wishlist {
 
     @Id

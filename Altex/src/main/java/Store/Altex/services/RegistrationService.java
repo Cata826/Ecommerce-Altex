@@ -1,20 +1,10 @@
 package Store.Altex.services;
-
-
-import Store.Altex.models.Customer;
-import Store.Altex.models.Admin;
 import Store.Altex.models.User;
 import Store.Altex.enums.UserRole;
-import Store.Altex.repositories.AdminRepository;
-import Store.Altex.repositories.CustomerRepository;
-import Store.Altex.repositories.UserRepository;
-import Store.Altex.services.UserService;
 import Store.Altex.models.ConfirmationToken;
 import Store.Altex.email.EmailValidator;
-import Store.Altex.models.User;
 import Store.Altex.requests.RegistrationRequest;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import Store.Altex.email.*;

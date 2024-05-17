@@ -1,15 +1,11 @@
 package Store.Altex.controllers;
 
-
-import Store.Altex.models.Cart;
 import Store.Altex.models.Order;
 import Store.Altex.models.Product;
-import Store.Altex.services.CartService;
 import Store.Altex.services.OrderService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import javax.mail.MessagingException;
 import java.util.List;
 

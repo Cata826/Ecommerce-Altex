@@ -38,7 +38,7 @@ class ProductServiceTest {
 
     @Test
     void createProductSuccessfully() {
-        // given
+
         Category category = new Category();
         category.setName("Electronics");
         Product product = new Product();
@@ -46,10 +46,8 @@ class ProductServiceTest {
         when(categoryRepository.findByName("Electronics")).thenReturn(Arrays.asList(category));
         when(productRepository.save(product)).thenReturn(product);
 
-        // when
         Product createdProduct = productService.createProduct(product);
 
-        // then
         assertThat(createdProduct).isEqualTo(product);
         verify(productRepository).save(product);
         verify(categoryRepository).findByName("Electronics");
@@ -58,27 +56,23 @@ class ProductServiceTest {
 
     @Test
     void updateProductStarsSuccessfully() {
-        // given
+
         Long productId = 1L;
         int stars = 5;
         when(productRepository.updateStars(productId, stars)).thenReturn(1);
 
-        // when
         productService.updateProductStars(productId, stars);
 
-        // then
         verify(productRepository).updateStars(productId, stars);
     }
 
     @Test
     void updateProductStarsNotFoundThrowsException() {
-        // given
+
         Long productId = 1L;
         int stars = 5;
         when(productRepository.updateStars(productId, stars)).thenReturn(0);
 
-        // when
-        // then
         assertThatThrownBy(() -> productService.updateProductStars(productId, stars))
                 .isInstanceOf(EntityNotFoundException.class)
                 .hasMessageContaining("Product with ID " + productId + " not found.");
@@ -86,33 +80,26 @@ class ProductServiceTest {
 
     @Test
     void getProductByIdFound() {
-        // given
+
         Long productId = 1L;
         Product product = new Product();
         when(productRepository.findById(productId)).thenReturn(Optional.of(product));
-
-        // when
         Product foundProduct = productService.getProductById(productId);
 
-        // then
         assertThat(foundProduct).isEqualTo(product);
     }
 
     @Test
     void getProductByIdNotFoundThrowsException() {
-        // given
+
         Long productId = 1L;
         when(productRepository.findById(productId)).thenReturn(Optional.empty());
-
-        // when
-        // then
         assertThatThrownBy(() -> productService.getProductById(productId))
                 .isInstanceOf(UserNotFoundException.class);
     }
 
     @Test
     void updateProductDetails() {
-        // given
         Long productId = 1L;
         Product existingProduct = new Product();
         Product updatedProductDetails = new Product();
@@ -120,26 +107,21 @@ class ProductServiceTest {
         when(productRepository.findById(productId)).thenReturn(Optional.of(existingProduct));
         when(productRepository.save(existingProduct)).thenReturn(existingProduct);
 
-        // when
         Product updatedProduct = productService.updateProduct(productId, updatedProductDetails);
 
-        // then
         assertThat(updatedProduct.getName()).isEqualTo("New Name");
         verify(productRepository).save(existingProduct);
     }
 
     @Test
     void deleteProductSuccessfully() {
-        // given
         Long productId = 1L;
         Product product = new Product();
         when(productRepository.findById(productId)).thenReturn(Optional.of(product));
         doNothing().when(productRepository).delete(product);
 
-        // when
         productService.deleteProduct(productId);
 
-        // then
         verify(productRepository).delete(product);
     }
 }

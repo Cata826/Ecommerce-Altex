@@ -144,31 +144,21 @@ class EmailServiceTest {
 
     @Test
     void sendEmailSuccessfully() throws MessagingException {
-        // Given
         String to = "test@example.com";
         String emailContent = "<h1>Welcome</h1>";
-
-        // When
         emailService.send(to, emailContent);
-
-        // Then
         verify(mailSender, times(1)).send(mimeMessage);
     }
 
 
     @Test
     void sendEmailWithPdfSuccessfully() throws MessagingException {
-        // Given
         String to = "test@example.com";
         String subject = "Your PDF";
         String text = "Here's your document";
         String pdfFileName = "document.pdf";
         byte[] pdfContent = new byte[10]; // Simulate a PDF file
-
-        // When
         emailService.sendEmailWithPdf(to, subject, text, pdfFileName, pdfContent);
-
-        // Then
         verify(mailSender).send(any(MimeMessage.class));
     }
 

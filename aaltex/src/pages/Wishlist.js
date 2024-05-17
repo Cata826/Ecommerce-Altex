@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
@@ -21,32 +22,34 @@ export default function Wishlist() {
     };
 
     return (
-        <div className="container">
-            <h2>User's Wishlist Products</h2>
-            <table className="table border shadow">
-                <thead>
-                    <tr>
-                        <th scope="col">Product ID</th>
-                        <th scope="col">Product Name</th>
-                        <th scope="col">Price</th>
-                        <th scope="col">Short Description</th>
-                        {/* ... Include other product details as necessary ... */}
-                        <th scope="col">Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {products.map((product, index) => (
-                        <tr key={index}>
-                            <td>{product.id}</td>
-                            <td>{product.name}</td>
-                            <td>{product.short_description}</td>
-                            <td>{product.pret}</td>
-                           
-                      
+        <div className="container-fluid" style={{ width: '100vw', height: 'auto' }}>
+            <h2>WISHLIST PRODUCTS</h2>
+            <div style={{ width: '100%', height: '400px', overflowY: 'auto' }}>
+                <table className="table border shadow" style={{ width: '100%' }}>
+                    <thead>
+                        <tr>
+                            {/* <th scope="col">Product ID</th> */}
+                            <th scope="col">Product Name</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Short Description</th>
+                            <th scope="col"></th>
+                            {/* ... Include other product details as necessary ... */}
                         </tr>
-                    ))}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        {products.map((product, index) => (
+                            <tr key={index}>
+                                {/* <td>{product.id}</td> */}
+                                <td>{product.name}</td>
+                                <td>{product.short_description}</td>
+                                <td>{product.pret}</td>
+                                <td><img src={product.imageUrl} alt={product.name} style={{ width: '100px', height: 'auto' }} /></td>
+                                {/* ... Include other product details as necessary ... */}
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
         </div>
     );
 }

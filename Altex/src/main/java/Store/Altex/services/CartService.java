@@ -42,15 +42,7 @@ public class CartService {
 
         return cartRepository.save(order);
     }
-    //    private void sendOrderConfirmationEmail(String emailAddress) {
-//        // Ensure the email address is valid
-//        if (!emailValidator.test(emailAddress)) {
-//            throw new IllegalStateException("Email is not valid");
-//        }
-//        String subject = "Order Confirmation";
-////        String body = "Your order has been successfully processed.";
-//        emailSender.send(emailAddress, subject);
-//    }
+
     public List<Product> getProductsForUserCart(Long userId) {
         return cartRepository.findProductsByUserId(userId);
     }

@@ -1,7 +1,6 @@
 package Store.Altex.controllers;
 
 import Store.Altex.models.Cart;
-import Store.Altex.models.Order;
 import Store.Altex.models.Product;
 import Store.Altex.services.CartService;
 import Store.Altex.services.OrderService;
@@ -10,7 +9,6 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 

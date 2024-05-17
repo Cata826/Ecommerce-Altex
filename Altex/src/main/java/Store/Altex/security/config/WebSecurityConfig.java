@@ -24,12 +24,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final UserService userService;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
-//
-//    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-//        // Serve static resources from an external directory
-//        registry.addResourceHandler("/public/**")
-//                .addResourceLocations("file:///D:/1ProiecteAN3/1AltexPS/public/");
-//    }
+
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {

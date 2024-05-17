@@ -8,7 +8,6 @@ import Store.Altex.services.CartService;
 import Store.Altex.services.LoginService;
 import Store.Altex.services.OrderService;
 import lombok.AllArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -54,48 +53,29 @@ public class CartController {
         List<Product> products = cartService.getProductsForUserCart(userId);
         return ResponseEntity.ok(products);
     }
-//    @GetMapping("/user/{userId}/products/move")
-//    public ResponseEntity<List<Product>> move(@PathVariable Long userId) throws MessagingException {
-//        List<Product> products = cartService.getProductsForUserCart(userId);
-//        for(Product product : products) {
-//            Long productId = product.getId();
-//            Order order = orderService.addToWishlist(userId, productId);
-//        }
-//        List<Cart> carts = cartService.getCartByUserId(userId);
-//        for(Cart cart : carts){
-//            Long cartId = cart.getId();
-//            cartService.removeFromCart(cartId);
-//        }
-//        return ResponseEntity.ok(products);
-//    }
-@GetMapping("/user/{userId}/products/move")
-public ResponseEntity<Map<Product, Integer>> move(@PathVariable Long userId) throws MessagingException {
-    List<Product> products = cartService.getProductsForUserCart(userId);
-    Map<Product, Integer> wishlist = new HashMap<>();
-    for (Product product : products) {
-        Long productId = product.getId();
-        Order order = orderService.addToWishlist(userId, productId);
 
-        // Add the product to the wishlist map
-        wishlist.put(product, wishlist.getOrDefault(product, 0) + 1);
+    @GetMapping("/user/{userId}/products/move")
+    public ResponseEntity<Map<Product, Integer>> move(@PathVariable Long userId) throws MessagingException {
+        List<Product> products = cartService.getProductsForUserCart(userId);
+        Map<Product, Integer> wishlist = new HashMap<>();
+        for (Product product : products) {
+            Long productId = product.getId();
+            Order order = orderService.addToWishlist(userId, productId);
 
-    }
-    orderService.sendOrderConfirmationEmail(loginService.getUserById(userId).getEmail(), wishlist);
-    List<Cart> carts = cartService.getCartByUserId(userId);
-    for (Cart cart : carts) {
-        Long cartId = cart.getId();
-        cartService.removeFromCart(cartId);
+            // Add the product to the wishlist map
+            wishlist.put(product, wishlist.getOrDefault(product, 0) + 1);
+
+        }
+        orderService.sendOrderConfirmationEmail(loginService.getUserById(userId).getEmail(), wishlist);
+        List<Cart> carts = cartService.getCartByUserId(userId);
+        for (Cart cart : carts) {
+            Long cartId = cart.getId();
+            cartService.removeFromCart(cartId);
+        }
+
+        return ResponseEntity.ok(wishlist);
     }
 
-    return ResponseEntity.ok(wishlist);
-}
-
-    //        public List<Cart> getCartByUserId(Long userId) {
-//        return cartRepository.findByUserId(userId);
-//    }
-//    public void removeFromCart(Long order) {
-//        cartRepository.deleteById(order);
-//    }
     @GetMapping
     public ResponseEntity<List<Cart>> getAllCarts() {
         List<Cart> wishlists = cartService.getAllWishlists();

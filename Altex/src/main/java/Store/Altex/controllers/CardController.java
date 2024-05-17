@@ -21,11 +21,6 @@ public class CardController {
     @Autowired
     private final CardService cardService;
 
-//    @Autowired
-//    public CardController(CardService cardService) {
-//        this.cardService = cardService;
-//    }
-
     @GetMapping
     public ResponseEntity<List<Card>> getAllCards() {
         List<Card> cards = cardService.getAllCards();
@@ -38,13 +33,6 @@ public class CardController {
                 .map(card -> new ResponseEntity<>(card, HttpStatus.OK))
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
-//    @PostMapping
-//    public ResponseEntity<Card> createCard(@RequestBody Card card) {
-////        cardService.sen
-////        cardService.senderofemail();
-//        Card createdCard = cardService.saveCard(card);
-//        return new ResponseEntity<>(createdCard, HttpStatus.CREATED);
-//    }
 
     @PostMapping
     public ResponseEntity<Card> createCard(@RequestBody Card card) {

@@ -34,7 +34,7 @@ export default function Cart() {
     };
     return (
         <div className="container-fluid" style={{ width: '100vw', height: 'auto' }}>
-            <h2>Products that were added to the cart</h2>
+            <h2>SHOPPING CART</h2>
             <div style={{ width: '100%', height: '400px', overflowY: 'auto' }}>
                 <table className="table border shadow" style={{ width: '100%' }}>
                     <thead>
@@ -42,7 +42,7 @@ export default function Cart() {
                             <th scope="col">Product Name</th>
                             <th scope="col">Price</th>
                             <th scope="col">Short Description</th>
-                            <th scope="col">Image</th>
+                            <th scope="col"></th>
                         </tr>
                     </thead>
                     <tbody>

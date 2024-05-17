@@ -39,15 +39,13 @@ class ReviewServiceTest {
 
     @Test
     void getAllReviewsForProductReturnsReviews() {
-        // given
+
         Long productId = 1L;
         Review review = new Review();
         when(reviewRepository.findAll()).thenReturn(Arrays.asList(review));
 
-        // when
         List<Review> reviews = reviewService.getAllReviewsForProduct(productId);
 
-        // then
         assertThat(reviews).contains(review);
         verify(reviewRepository).findAll();
     }

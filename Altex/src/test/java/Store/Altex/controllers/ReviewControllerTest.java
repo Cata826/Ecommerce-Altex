@@ -35,7 +35,7 @@ class ReviewControllerTest {
 
     @Test
     void addToReviewsShouldReturnReview() throws Exception {
-        // Given
+
         Long userId = 1L;
         Long productId = 1L;
         int star = 5;
@@ -48,7 +48,6 @@ class ReviewControllerTest {
 
         when(reviewService.addToReview(userId, productId, star, message)).thenReturn(review);
 
-        // When / Then
         mockMvc.perform(post("/api/v1/reviews")
                         .param("userId", String.valueOf(userId))
                         .param("productId", String.valueOf(productId))
@@ -61,12 +60,10 @@ class ReviewControllerTest {
 
     @Test
     void calculateAverageRatingShouldReturnAverageRating() throws Exception {
-        // Given
         Long productId = 1L;
         Double averageRating = 4.5;
         when(reviewService.calculateAverageRating(productId)).thenReturn(averageRating);
 
-        // When / Then
         mockMvc.perform(get("/api/v1/reviews/average/{productId}", productId))
                 .andExpect(status().isOk())
                 .andExpect(content().string(String.valueOf(averageRating)));

@@ -31,12 +31,6 @@ public class LoginController {
     private final LoginService loginService;
     private final XmlService xmlService;
 
-//    @GetMapping(value = "/{id}/xml", produces = "application/xml")
-//    public String getUserXml(@PathVariable Long id) {
-//        User user = userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
-//        return xmlService.userToXml(user);
-//    }
-
     @GetMapping(value = "/{id}/xml")
     public ResponseEntity<String> getUserXml(@PathVariable Long id, HttpServletResponse response) {
         User user = userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
@@ -124,8 +118,5 @@ public class LoginController {
         return userRepository.findAll();
     }
 
-//    @GetMapping("/{id}")
-//    public Optional<User> gets(@PathVariable Long id) {
-//        return userRepository.findById(id);
-//    }
+
 }

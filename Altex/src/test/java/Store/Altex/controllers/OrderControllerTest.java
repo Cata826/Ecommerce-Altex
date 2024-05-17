@@ -39,7 +39,7 @@ class OrderControllerTest {
     void addToOrderShouldReturnOrder() throws Exception {
         Long userId = 1L;
         Long productId = 1L;
-        Order order = new Order(); // Assume Order is a valid model class with proper getters and setters
+        Order order = new Order();
 
         when(orderService.addToWishlist(userId, productId)).thenReturn(order);
 
@@ -47,7 +47,7 @@ class OrderControllerTest {
                         .param("userId", String.valueOf(userId))
                         .param("productId", String.valueOf(productId)))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$").exists()); // Check for the existence of some JSON path
+                .andExpect(jsonPath("$").exists());
     }
 
     @Test
@@ -69,7 +69,7 @@ class OrderControllerTest {
         mockMvc.perform(get("/api/v1/order/all"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$").isArray())
-                .andExpect(jsonPath("$[0]").exists()); // Assuming that the JSON array is not empty
+                .andExpect(jsonPath("$[0]").exists());
     }
 
     @Test
@@ -82,7 +82,7 @@ class OrderControllerTest {
         mockMvc.perform(get("/api/v1/order/user/{userId}", userId))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$").isArray())
-                .andExpect(jsonPath("$[0]").exists()); // Checking for the existence of orders in the response
+                .andExpect(jsonPath("$[0]").exists());
     }
 
     @Test
@@ -95,7 +95,7 @@ class OrderControllerTest {
         mockMvc.perform(get("/api/v1/order/user/{userId}/products", userId))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$").isArray())
-                .andExpect(jsonPath("$[0]").exists()); // Assuming that the JSON array is not empty
+                .andExpect(jsonPath("$[0]").exists());
     }
 
     @Test
@@ -107,6 +107,6 @@ class OrderControllerTest {
         mockMvc.perform(get("/api/v1/order"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$").isArray())
-                .andExpect(jsonPath("$[0]").exists()); // Assuming that the JSON array is not empty
+                .andExpect(jsonPath("$[0]").exists());
     }
 }

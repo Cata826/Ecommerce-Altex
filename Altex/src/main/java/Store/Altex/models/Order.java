@@ -21,12 +21,8 @@ public class Order {
     @GeneratedValue
     private Long id;
 
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "user_id")
-//
-//    private User user;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", referencedColumnName = "id") // Ensure referencedColumnName matches the primary key in User
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
     @JsonIgnore
     private User user;
     @ManyToOne(fetch = FetchType.LAZY)

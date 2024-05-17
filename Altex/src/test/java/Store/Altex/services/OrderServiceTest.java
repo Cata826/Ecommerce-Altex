@@ -42,15 +42,12 @@ class OrderServiceTest {
 
     @Test
     void getUserShouldReturnUser() {
-        // Given
+
         Long userId = 1L;
         User user = new User();
         when(orderRepository.findUserByUserId(userId)).thenReturn(Optional.of(user));
 
-        // When
         Optional<User> result = orderService.getUser(userId);
-
-        // Then
         assertThat(result).contains(user);
         verify(orderRepository).findUserByUserId(userId);
     }
@@ -58,58 +55,45 @@ class OrderServiceTest {
 
     @Test
     void removeFromOrderShouldDeleteOrder() {
-        // Given
+
         Long orderId = 1L;
         doNothing().when(orderRepository).deleteById(orderId);
-
-        // When
         orderService.removeFromOrder(orderId);
-
-        // Then
         verify(orderRepository).deleteById(orderId);
     }
 
 
     @Test
     void getAllWishlistsShouldReturnAllOrders() {
-        // Given
         List<Order> orders = Arrays.asList(new Order(), new Order());
         when(orderRepository.findAllWithUserAndProduct()).thenReturn(orders);
-
-        // When
         List<Order> result = orderService.getAllWishlists();
 
-        // Then
         assertThat(result).isEqualTo(orders);
         verify(orderRepository).findAllWithUserAndProduct();
     }
 
     @Test
     void getProductsForUserOrderShouldReturnProducts() {
-        // Given
         Long userId = 1L;
         List<Product> products = Arrays.asList(new Product(), new Product());
         when(orderRepository.findProductsByUserId(userId)).thenReturn(products);
 
-        // When
         List<Product> result = orderService.getProductsForUserOrder(userId);
 
-        // Then
         assertThat(result).isEqualTo(products);
         verify(orderRepository).findProductsByUserId(userId);
     }
 
     @Test
     void getOrdersByUserIdShouldReturnOrders() {
-        // Given
+
         Long userId = 1L;
         List<Order> orders = Arrays.asList(new Order(), new Order());
         when(orderRepository.findByUserId(userId)).thenReturn(orders);
 
-        // When
         List<Order> result = orderService.getOrdersByUserId(userId);
 
-        // Then
         assertThat(result).isEqualTo(orders);
         verify(orderRepository).findByUserId(userId);
     }

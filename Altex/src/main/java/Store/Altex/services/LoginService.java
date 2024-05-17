@@ -28,10 +28,7 @@ public class LoginService {
     }
 
 
-//    public void updateLastLogged(LocalDateTime lastLogged) {
-//        // Logic to update lastLogged for all users
-//        userRepository.updateLastLoggedForAllUsers(lastLogged);
-//    }
+
     public void updateLastLogged(Long userId, LocalDateTime lastLogged) {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new IllegalArgumentException("User not found with id: " + userId));
