@@ -22,6 +22,7 @@ import Cart from './pages/Cart.js';
 import Chat from './Chat.js';
 import Card from './pages/Card.js'
 import LastLogins from './pages/LastLogins.js'
+import NotLogged from './see/NotLogged.js'
 // import Footer from './layout/Footer.js';
 function App() {
   return (
@@ -35,7 +36,7 @@ function App() {
     <Route exact path="/user/:id" element={<Home2B/>}/>
     <Route exact path="/cart/:id" element={<Cart/>}/>
     <Route exact path="/order/:id" element={<Order/>}/>
-    <Route exact path="/" element={<First/>}/>
+    <Route exact path="/" element={<NotLogged/>}/>
     <Route exact path="/products" element={<HomeB />}/>
     <Route exact path="/admin" element={<Navigation/>}/>
     <Route exact path="/register" element={<RegisterForm/>}/>

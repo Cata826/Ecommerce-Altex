@@ -24,17 +24,12 @@ export default function EditProduct() {
   const onSubmit = async (e) => {
     e.preventDefault();
     await axios.put(`http://localhost:8080/api/v1/products/${id}`,product);
- //   console.log(product);
+
     setProduct({"name" : "product.name" });
    console.log(product.name);
     navigate("/products");
   };
 
-//   const loadProduct = async () => {
-//     const result = await axios.get(`http://localhost:8080/product/${id}`);
-    
-//     setProduct(result.name);
-//   };
 const loadProduct = async () => {
     try {
       const response = await axios.get(`http://localhost:8080/api/v1/products/${id}`);

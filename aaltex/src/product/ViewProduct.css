@@ -1,94 +1,4 @@
-/* .product-container {
-    padding: 20px;
-    max-width: 1200px;
-    height: auto;
-  margin: auto;
-}
 
-.product-details {
-    display: flex;
-    align-items: flex-start;
-    max-width: 1200px;
-    height: auto; 
-}
-
-.product-image-container {
-    flex: 1;
-    margin-right: 20px;
-    height: auto; 
-}
-
-.product-image {
-    width: 100%;
-    height: auto; 
-    border-radius: 4px;
-    object-fit: cover; 
-}
-
-.product-info {
-    flex: 2;
-}
-
-.product-name {
-    font-size: 24px;
-    margin-bottom: 10px;
-}
-
-.product-price {
-    font-weight: bold;
-    margin-bottom: 10px;
-}
-
-.product-short-description {
-    margin-bottom: 10px;
-}
-
-.product-long-description {
-    margin-bottom: 20px;
-}
-
-.rating-section {
-    display: flex;
-    margin-bottom: 10px;
-}
-
-.star {
-    cursor: pointer;
-    margin-right: 5px;
-}
-
-.review-section {
-    margin-top: 20px;
-}
-
-.review-input {
-    width: 100%;
-    padding: 10px;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-    margin-bottom: 10px;
-}
-
-.submit-review-button {
-    padding: 10px 20px;
-    border-radius: 4px;
-    background-color: #007bff;
-    color: #ffffff;
-    border: none;
-    cursor: pointer;
-}
-
-.back-to-home {
-    margin-top: 20px;
-}
-
-.back-to-home-link {
-    display: inline-block;
-    text-decoration: none;
-    background-color: #007bff;
-    color: #ffffff;
-    padding: 10px;
-} */
 
 body {
     margin: 0;
@@ -104,22 +14,22 @@ body {
 }
 
 .product-image-container {
-    flex: 0.59; /* Reduced flex value to make it smaller */
+    flex: 0.59; 
     display: flex;
     align-items: center;
     justify-content: center;
     height: 80%;
-    padding: 20px; /* Added padding for spacing */
+    padding: 20px; 
     background-color: #ffffff;
-    border-right: 2px solid #FFB74D; /* Bright orange border */
+    border-right: 2px solid #FFB74D; 
 }
 
 
 .product-image {
     width: 90%;
-    height: auto; /* Maintain aspect ratio */
+    height: auto; 
     object-fit: cover;
-    border-radius: 8px; /* Slight rounding for a modern look */
+    border-radius: 8px; 
 }
 
 .product-info-container {

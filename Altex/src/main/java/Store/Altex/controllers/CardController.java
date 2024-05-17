@@ -38,14 +38,20 @@ public class CardController {
                 .map(card -> new ResponseEntity<>(card, HttpStatus.OK))
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
+//    @PostMapping
+//    public ResponseEntity<Card> createCard(@RequestBody Card card) {
+////        cardService.sen
+////        cardService.senderofemail();
+//        Card createdCard = cardService.saveCard(card);
+//        return new ResponseEntity<>(createdCard, HttpStatus.CREATED);
+//    }
+
     @PostMapping
     public ResponseEntity<Card> createCard(@RequestBody Card card) {
-//        cardService.sen
-//        cardService.senderofemail();
-        Card createdCard = cardService.saveCard(card);
-        return new ResponseEntity<>(createdCard, HttpStatus.CREATED);
-    }
+        Card savedCard = cardService.saveCard(card);
 
+        return new ResponseEntity<>(savedCard, HttpStatus.CREATED);
+    }
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteCard(@PathVariable Long id) {
         cardService.deleteCard(id);

@@ -1,11 +1,9 @@
 package Store.Altex.services;
-
 import Store.Altex.email.EmailSender;
 import Store.Altex.models.Card;
 import Store.Altex.repositories.CardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -15,8 +13,9 @@ public class CardService {
     private final CardRepository cardRepository;
     private EmailSender emailSender;
     @Autowired
-    public CardService(CardRepository cardRepository) {
+    public CardService(CardRepository cardRepository,EmailSender emailSender) {
         this.cardRepository = cardRepository;
+        this.emailSender = emailSender;
     }
 
     public List<Card> getAllCards() {
@@ -27,15 +26,15 @@ public class CardService {
         return cardRepository.findById(id);
     }
 
+    private void sendEmailNotification() {
+        emailSender.send("vladhodis@gmail.com", "PAYMENT SUCCESSFUL");
+    }
     public Card saveCard(Card card) {
-
+        sendEmailNotification();
         return cardRepository.save(card);
 
     }
-    public void senderofemail()
-    {
-        emailSender.send( "PAYMENT SUCCESSFULLY","vladhodis@gmail.com");
-    }
+
     public void deleteCard(Long id) {
         cardRepository.deleteById(id);
     }
