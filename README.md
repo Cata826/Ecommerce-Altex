@@ -8,7 +8,7 @@ This project aims to create an online shopping experience that mirrors the succe
 ![Screenshot 2](Screenshot_2025-02-16_083102.png)
 ![Screenshot 3](Screenshot_2025-02-16_083111.png)
 ![Screenshot 4](Screenshot_2025-02-16_083118.png)
-![Screenshot 5](Screenshot_2025-02-16_083130.png)
+![Screenshot 5](Screenshot_2025-02-16_083130.png) 
 
 ## Features
 - **User and Admin Access**: Specialized functionalities for both users and administrators.
