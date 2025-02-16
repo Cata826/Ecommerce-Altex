@@ -25,5 +25,4 @@ This project aims to create an online shopping experience that mirrors the succe
 - **Database**: MySQL for reliable data management.
 - **Security**: Integrated security features to protect user data and transactions.
 
-## Installation and Setup
-1. **Clone the repository**:
+
