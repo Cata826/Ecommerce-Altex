@@ -4,11 +4,11 @@
 This project aims to create an online shopping experience that mirrors the success of ALTEX retail, providing a wide range of electronic and home appliance products. Using full-stack technologies like Spring and React, this platform focuses on offering high-quality service and competitive prices to customers nationwide.
 
 ## Screenshots
-![Screenshot 1](Screenshot_2025-02-16_083055.png)
-![Screenshot 2](Screenshot_2025-02-16_083102.png)
-![Screenshot 3](Screenshot_2025-02-16_083111.png)
-![Screenshot 4](Screenshot_2025-02-16_083118.png)
-![Screenshot 5](Screenshot_2025-02-16_083130.png) 
+![Screenshot 1](Screenshot_2025-02-16 083055.png)
+![Screenshot 2](Screenshot_2025-02-16 083102.png)
+![Screenshot 3](Screenshot_2025-02-16 083111.png)
+![Screenshot 4](Screenshot_2025-02-16 083118.png)
+![Screenshot 5](Screenshot_2025-02-16 083130.png) 
 
 ## Features
 - **User and Admin Access**: Specialized functionalities for both users and administrators.
